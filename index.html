@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="RUNCTY: requisitos, tecnologías y propuesta de diseño del proyecto de rutas seguras para corredores de Loja.">
+  <meta name="author" content="Marcelo Pico Benitez">
+  <title>RUNCTY · Requisitos, tecnologías y diseño</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&amp;family=Manrope:wght@400;500;600;700&amp;display=swap">
+  <link rel="stylesheet" href="css/estilos.css">
+  <link rel="stylesheet" href="css/componentes.css">
+</head>
+<body>
+  <a class="saltar" href="#contenido">Saltar al contenido</a>
+
+  <!-- ================= ENCABEZADO ================= -->
+  <header class="cabecera">
+    <div class="contenedor cabecera-fila">
+      <a class="marca" href="#inicio">
+        <span class="marca-icono" aria-hidden="true">R</span>
+        <span class="marca-texto">RUNCTY</span>
+      </a>
+
+      <!-- Menú para celular: el checkbox abre y cierra la navegación -->
+      <input type="checkbox" id="menu" class="oculto">
+      <label for="menu" class="menu-boton">
+        <span class="menu-lineas" aria-hidden="true"></span>
+        <span class="solo-lector">Abrir o cerrar el menú</span>
+      </label>
+
+      <nav class="navegacion" aria-label="Secciones de la página">
+        <ul>
+          <li><a href="#proyecto">Proyecto</a></li>
+          <li><a href="#usuarios">Usuarios</a></li>
+          <li><a href="#requisitos">Requisitos</a></li>
+          <li><a href="#tecnologias">Tecnologías</a></li>
+          <li><a class="nav-destacado" href="#diseno">Diseño</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido">
+
+    <!-- ================= PORTADA ================= -->
+    <section class="portada" id="inicio" aria-labelledby="titulo-portada">
+      <div class="contenedor portada-rejilla">
+        <div class="portada-texto">
+          <p class="etiqueta">Ingeniería Web · UTPL · Oct 2026 – Feb 2027</p>
+          <h1 id="titulo-portada">RUNCTY: rutas seguras para corredores</h1>
+          <p class="portada-lead">Requisitos, tecnologías y propuesta de diseño del prototipo web y móvil para el Club Deportivo Gacelas Running Team, reunidos en una sola página.</p>
+          <div class="acciones">
+            <a class="boton boton-principal" href="#requisitos">Ver requisitos</a>
+            <a class="boton boton-borde" href="#tecnologias">Ver tecnologías</a>
+          </div>
+          <ul class="cifras">
+            <li><strong>23</strong> requisitos funcionales</li>
+            <li><strong>12</strong> requisitos no funcionales</li>
+            <li><strong>5</strong> tipos de usuario</li>
+          </ul>
+        </div>
+
+        <aside class="ficha" aria-labelledby="titulo-ficha">
+          <h2 id="titulo-ficha" class="ficha-titulo">Ficha del proyecto</h2>
+          <dl>
+            <dt>Proyecto</dt>
+            <dd>RUNCTY: aplicación para la generación de rutas seguras para corredores (prototipo para Loja)</dd>
+            <dt>Cliente</dt>
+            <dd>Club Deportivo Gacelas Running Team</dd>
+            <dt>Asignatura</dt>
+            <dd>Ingeniería Web</dd>
+            <dt>Docente</dt>
+            <dd>Ing. Diana Torres Guarnizo</dd>
+            <dt>Equipo</dt>
+            <dd>Joel Domínguez Ochoa, Marcelo Pico Benitez y Lennin Salinas Quinche</dd>
+            <dt>Carrera</dt>
+            <dd>Computación</dd>
+          </dl>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ================= 01 PROYECTO ================= -->
+    <section class="seccion" id="proyecto" aria-labelledby="titulo-proyecto">
+      <div class="contenedor">
+        <p class="etiqueta"><span class="numero">01</span> Requisitos · Descripción</p>
+        <h2 id="titulo-proyecto">Descripción del proyecto</h2>
+        <div class="texto-columnas">
+          <p>RUNCTY es un prototipo dirigido a los corredores y al Club Deportivo Gacelas Running Team que coloca la seguridad de la ruta y del horario como el elemento central de la planificación del entrenamiento. Esta versión funciona en la ciudad de Loja y queda preparada para habilitar otras ciudades en el futuro.</p>
+          <p>El corredor indica la distancia, el horario y su nivel (por ejemplo: 5 km, 05:30, principiante) y el sistema le recomienda las rutas establecidas de la ciudad ordenadas por su índice de seguridad, junto con los espacios recomendados disponibles a esa hora. Cada ruta muestra el nivel de sus tramos y los factores que lo determinan.</p>
+          <p>Durante el entrenamiento, la aplicación graba el recorrido con GPS y calcula su distancia, tiempo y ritmo. Por seguridad, el corredor puede compartir su recorrido en vivo con sus contactos de confianza mediante un enlace que caduca y enviarles una alerta SOS.</p>
+          <p>La comunidad aporta reportes de incidentes, que el club modera, y el club registra rutas, espacios, horarios recomendados, zonas de riesgo y los banners de sus patrocinadores. Las rutas personales y la ubicación del corredor son privadas por defecto.</p>
+        </div>
+
+        <h3 class="subtitulo">Tres partes, un mismo servidor y una misma base de datos</h3>
+        <div class="rejilla rejilla-3">
+          <article class="tarjeta">
+            <p class="tarjeta-numero" aria-hidden="true">A</p>
+            <h4>Aplicación web</h4>
+            <p>Planificador, explorador público de rutas y espacios recomendados de Loja, panel del club y administración.</p>
+          </article>
+          <article class="tarjeta">
+            <p class="tarjeta-numero" aria-hidden="true">B</p>
+            <h4>Aplicación móvil Android</h4>
+            <p>El corredor planifica y graba sus entrenamientos.</p>
+          </article>
+          <article class="tarjeta">
+            <p class="tarjeta-numero" aria-hidden="true">C</p>
+            <h4>Servidor con API REST</h4>
+            <p>Calcula el índice de seguridad.</p>
+          </article>
+        </div>
+
+        <h3 class="subtitulo">Alcance inicial</h3>
+        <p class="intro">Prototipo funcional web y Android para los corredores de Loja y el Club Gacelas. Ambas aplicaciones comparten rutas, espacios recomendados, horarios y reportes. El índice de seguridad es referencial: ayuda a tomar decisiones informadas, sin garantizar que los recorridos estén libres de riesgos.</p>
+
+        <div class="rejilla rejilla-2">
+          <div class="bloque">
+            <h4>Se desarrollará · Aplicación web</h4>
+            <ul class="lista-check">
+              <li>Registro e inicio de sesión con permisos según el rol: corredor, administrador del club y administrador del sistema.</li>
+              <li>Mapa interactivo de Loja con las rutas y espacios recomendados por el club y sus horarios.</li>
+              <li>Catálogo de rutas con distancia, dificultad, duración estimada y condiciones de seguridad.</li>
+              <li>Recomendación de rutas según distancia, horario y nivel, y cálculo de recorridos entre dos puntos.</li>
+              <li>Índice de seguridad referencial de 0 a 100.</li>
+              <li>Registro de incidentes sujetos a revisión y aprobación del club.</li>
+              <li>Panel administrativo para rutas, espacios, horarios, zonas de riesgo y reportes.</li>
+              <li>Espacios publicitarios para patrocinadores, administrados por el club.</li>
+            </ul>
+          </div>
+          <div class="bloque">
+            <h4>Se desarrollará · Aplicación Android</h4>
+            <ul class="lista-check">
+              <li>Mapa interactivo, rutas recomendadas y condiciones de seguridad según el horario.</li>
+              <li>Planificación de entrenamientos por distancia, horario y nivel de experiencia.</li>
+              <li>Registro de recorridos con GPS: distancia, tiempo y ritmo.</li>
+              <li>Almacenamiento de entrenamientos e historial de actividades.</li>
+              <li>Grabación con la pantalla bloqueada y almacenamiento temporal sin internet.</li>
+              <li>Proponer recorridos como nuevas rutas, sujetos a revisión del club.</li>
+              <li>Hasta cinco contactos de confianza con enlaces temporales de ubicación.</li>
+              <li>Alerta SOS por correo, mensaje para WhatsApp y llamada al 911.</li>
+            </ul>
+          </div>
+        </div>
+
+        <details class="desplegable">
+          <summary>Funcionalidades sujetas al avance del proyecto</summary>
+          <div class="desplegable-cuerpo">
+            <ul class="lista-punto">
+              <li>Valoraciones de rutas, estadísticas deportivas adicionales, puntos de apoyo cercanos, comparación de recorridos y entrenamientos grupales.</li>
+              <li>Espacio informativo para que el club publique avisos de entrenamientos, carreras y maratones (por validar con el cliente).</li>
+              <li>Solo se considerarán cuando las funcionalidades principales estén desarrolladas y no pongan en riesgo los objetivos.</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="desplegable desplegable-fuera">
+          <summary>Funcionalidades fuera del alcance inicial</summary>
+          <div class="desplegable-cuerpo">
+            <ul class="lista-punto">
+              <li>Aplicación nativa para iPhone (iOS).</li>
+              <li>Publicación en Google Play o App Store.</li>
+              <li>Rutas y espacios de ciudades distintas de Loja (el sistema queda preparado).</li>
+              <li>Integración automática de las alertas SOS con ECU 911, Policía Nacional u otras instituciones.</li>
+              <li>Envío de mensajes SMS pagados.</li>
+              <li>Pagos o cobros dentro de la aplicación.</li>
+              <li>Integración con relojes inteligentes, Strava o Garmin.</li>
+              <li>Inteligencia artificial avanzada, rankings, retos o recompensas.</li>
+              <li>Generación automática de rutas circulares o de ida y vuelta.</li>
+            </ul>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ================= 02 USUARIOS ================= -->
+    <section class="seccion seccion-tono" id="usuarios" aria-labelledby="titulo-usuarios">
+      <div class="contenedor">
+        <p class="etiqueta"><span class="numero">02</span> Requisitos · Usuarios</p>
+        <h2 id="titulo-usuarios">Identificación de usuarios</h2>
+        <p class="intro">Cinco tipos de usuario. Abre cada tarjeta para ver sus principales responsabilidades y acciones.</p>
+
+        <div class="rejilla rejilla-usuarios">
+          <article class="usuario">
+            <p class="chip chip-naranja">Usuario final</p>
+            <h3>Corredor</h3>
+            <p>Deportistas de nivel principiante, intermedio y avanzado, y personas que entrenan de madrugada o de noche.</p>
+            <details class="usuario-detalle">
+              <summary>Responsabilidades</summary>
+              <ul class="lista-punto">
+                <li>Registrar entrenamientos con distancia, tiempo, ritmo y velocidad.</li>
+                <li>Consultar y seleccionar rutas seguras por ciudad, distancia y horario.</li>
+                <li>Consultar el mapa y los puntos de apoyo (policía, farmacias, gasolineras).</li>
+                <li>Calificar rutas y enviar reportes de incidentes.</li>
+                <li>Compartir su ubicación en tiempo real y emitir alertas SOS.</li>
+              </ul>
+            </details>
+          </article>
+          <article class="usuario">
+            <p class="chip chip-naranja">Usuario gestor</p>
+            <h3>Administrador del club</h3>
+            <p>Líderes de clubes de running, representantes de grupos deportivos u organizadores de entrenamientos comunitarios.</p>
+            <details class="usuario-detalle">
+              <summary>Responsabilidades</summary>
+              <ul class="lista-punto">
+                <li>Crear, sugerir y publicar rutas recomendadas oficialmente por el club.</li>
+                <li>Organizar salidas y entrenamientos grupales.</li>
+                <li>Moderar reportes, comentarios y sugerencias para evitar información falsa.</li>
+              </ul>
+            </details>
+          </article>
+          <article class="usuario">
+            <p class="chip chip-naranja">Usuario técnico</p>
+            <h3>Administrador del sistema</h3>
+            <p>Personal técnico encargado de la gestión global, administración y mantenimiento de la plataforma.</p>
+            <details class="usuario-detalle">
+              <summary>Responsabilidades</summary>
+              <ul class="lista-punto">
+                <li>Gestionar cuentas de usuario y controlar el acceso.</li>
+                <li>Asignar, modificar o retirar roles a los usuarios.</li>
+                <li>Configurar parámetros globales, ciudades y variables del índice de seguridad.</li>
+              </ul>
+            </details>
+          </article>
+          <article class="usuario">
+            <p class="chip chip-verde">Actor externo · sin cuenta</p>
+            <h3>Contacto de confianza</h3>
+            <p>Familiares o amigos registrados por el corredor para recibir soporte en caso de emergencia.</p>
+            <details class="usuario-detalle">
+              <summary>Responsabilidades</summary>
+              <ul class="lista-punto">
+                <li>Recibir el enlace temporal por correo o WhatsApp para ver el recorrido en tiempo real.</li>
+                <li>Recibir la alerta SOS con la última ubicación del corredor.</li>
+              </ul>
+            </details>
+          </article>
+          <article class="usuario">
+            <p class="chip chip-verde">Actor externo · sin cuenta</p>
+            <h3>Visitante</h3>
+            <p>Cualquier persona que accede a la web pública de RUNCTY sin iniciar sesión.</p>
+            <details class="usuario-detalle">
+              <summary>Responsabilidades</summary>
+              <ul class="lista-punto">
+                <li>Consultar el catálogo público de rutas oficiales y los espacios recomendados de Loja.</li>
+              </ul>
+            </details>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 03 REQUISITOS ================= -->
+    <section class="seccion" id="requisitos" aria-labelledby="titulo-requisitos">
+      <div class="contenedor">
+        <p class="etiqueta"><span class="numero">03</span> Requisitos · Funcionales y no funcionales</p>
+        <h2 id="titulo-requisitos">Requisitos del sistema</h2>
+        <p class="intro">Elige un grupo y abre cada requisito para ver su criterio de comprobación. Todos los requisitos funcionales tienen prioridad <strong>Debe tener</strong>.</p>
+
+        <!-- Pestañas: radio buttons ocultos + etiquetas (label) + selector ~ en CSS -->
+        <div class="pestanas">
+          <input type="radio" name="grupo" id="grupo-1" class="oculto" checked>
+          <input type="radio" name="grupo" id="grupo-2" class="oculto">
+          <input type="radio" name="grupo" id="grupo-3" class="oculto">
+          <input type="radio" name="grupo" id="grupo-4" class="oculto">
+          <input type="radio" name="grupo" id="grupo-5" class="oculto">
+
+          <div class="pestanas-botones">
+            <label for="grupo-1">Acceso y consulta <span>RF01–RF07</span></label>
+            <label for="grupo-2">Evaluación y planificación <span>RF08–RF10</span></label>
+            <label for="grupo-3">Club y comunidad <span>RF11–RF17</span></label>
+            <label for="grupo-4">Entrenamientos y seguridad <span>RF18–RF23</span></label>
+            <label for="grupo-5">No funcionales <span>RNF01–RNF12</span></label>
+          </div>
+
+          <!-- Grupo 1 -->
+          <div class="panel panel-1">
+            <h3 class="panel-titulo">Acceso y consulta de información</h3>
+            <details class="requisito">
+              <summary><span class="codigo">RF01</span> Registrar cuentas</summary>
+              <div class="requisito-cuerpo">
+                <p>El sistema deberá crear una cuenta con rol de corredor cuando un visitante envíe datos de registro válidos.</p>
+                <p class="criterio"><strong>Criterio de comprobación:</strong> con datos válidos y edad mínima de 15 años, se crea una cuenta pendiente de verificar. Un correo duplicado se rechaza.</p>
+                <p class="prioridad">Prioridad: Debe tener</p>
+              </div>
+            </details>
+            <details class="requisito">
+              <summary><span class="codigo">RF02</span> Verificar el correo</summary>
+              <div class="requisito-cuerpo">
+                <p>El sistema deberá activar la cuenta del corredor cuando este utilice un enlace de verificación vigente enviado a su correo.</p>
+                <p class="criterio"><strong>Criterio de comprobación:</strong> un enlace válido activa la cuenta; uno vencido o usado no permite activarla.</p>
+                <p class="prioridad">Prioridad: Debe tener</p>
+              </div>
+            </details>
+            <details class="requisito">
+              <summary><span class="codigo">RF03</span> Iniciar sesión</summary>
+              <div class="requisito-cuerpo">
+                <p>El sistema deberá autenticar a un usuario registrado mediante su correo y contraseña, y habilitar las funciones de su rol.</p>
+                <p class="criterio"><strong>Criterio de comprobación:</strong> un usuario activo con credenciales correctas accede a su rol; las credenciales incorrectas se rechazan.</p>
+                <p class="prioridad">Prioridad: Debe tener</p>
+              </div>
+            </details>
+            <details class="requisito">
+              <summary><span class="codigo">RF04</span> Consultar el mapa</summary>
+              <div class="requisito-cuerpo">
+                <p>La aplicación web deberá mostrar un mapa interactivo de Loja con las rutas y los espacios disponibles para los corredores.</p>
+                <p class="criterio"><strong>Criterio de comprobación:</strong> el visitante puede desplazar y ampliar el mapa, y seleccionar una ruta o un espacio publicado.</p>
+                <p class="prioridad">Prioridad: Debe tener</p>
+              </div>
+            </details>
+            <details class="requisito">
+              <summary><span class="codigo">RF05</span> Consultar el catálogo de rutas</summary>
+              <div class="requisito-cuerpo">
+                <p>La aplicación web deberá mostrar el catálogo público de rutas disponibles en Loja con su distancia y dificultad.</p>
+                <p class="criterio"><strong>Criterio de comprobación:</strong> una persona sin cuenta puede consultar las rutas publicadas y distinguir su nombre, distancia y dificultad.</p>
+                <p class="prioridad">Prioridad: Debe tener</p>
+              </div>
+            </details>
+            <details class="requisito">
+              <summary><span class="codigo">RF06</span> Consultar una ruta</summary>
+              <div class="requisito-cuerpo">
+                <p>El sistema deberá mostrar la ficha de una ruta seleccionada con su trazado, horario recomendado e índice referencial para la hora consultada.</p>
+                <p class="criterio"><strong>Criterio de comprobación:</strong> al seleccionar una ruta y una hora, se muestran el recorrido y los datos correspondientes a esa consulta.</p>
+                <p class="prioridad">Prioridad: Debe tener</p>
+              </div>
+            </details>
+            <details class="requisito">
+              <summary><span class="codigo">RF07</span> Consultar espacios recomendados</summary>
+              <div class="requisito-cuerpo">
+                <p>La aplicación web deberá mostrar los espacios recomendados por el Club Gacelas con su ubicación y horarios de uso sugeridos.</p>
+                <p class="criterio"><strong>Criterio de comprobación:</strong> se pueden consultar al menos cinco espacios validados por el club, con sus horarios registrados.</p>
+                <p class="prioridad">Prioridad: Debe tener</p>
+              </div>
+            </details>
+          </div>
+
+          <!-- Grupo 2 -->
+          <div class="panel panel-2">
+            <h3 class="panel-titulo">Evaluación y planificación de rutas</h3>
+            <details class="requisito">
+              <summary><span class="codigo">RF08</span> Calcular el índice de seguridad</summary>
+              <div class="requisito-cuerpo">
+                <p>El sistema deberá calcular un índice referencial de 0 a 100 para cada tramo de ruta en función del horario y de los datos disponibles del entorno.</p>
+                <p class="criterio"><strong>Criterio de comprobación:</strong> al consultar el mismo tramo en horarios distintos, el cálculo utiliza los parámetros correspondientes y muestra el resultado dentro de 0 a 100.</p>
+                <p class="prioridad">Prioridad: Debe tener</p>
+              </div>
+            </details>
+            <details class="requisito">
+              <summary><span class="codigo">RF09</span> Recomendar rutas</summary>
+              <div class="requisito-cuerpo">
+                <p>El sistema deberá recomendar rutas del catálogo de Loja según la distancia, el horario y el nivel de experiencia que indique el corredor.</p>
+                <p class="criterio"><strong>Criterio de comprobación:</strong> con una consulta válida, se muestran hasta cinco opciones ordenadas por su índice referencial; si no existen coincidencias, se informa al usuario.</p>
+                <p class="prioridad">Prioridad: Debe tener</p>
+              </div>
+            </details>
+            <details class="requisito">
+              <summary><span class="codigo">RF10</span> Planificar un trayecto</summary>
+              <div class="requisito-cuerpo">
+                <p>El sistema deberá calcular un recorrido entre un punto de partida y un destino dentro de Loja, priorizando los tramos mejor evaluados según la regla de cálculo aprobada.</p>
+                <p class="criterio"><strong>Criterio de comprobación:</strong> con dos puntos válidos se obtiene un trazado y su distancia; el resultado no se presenta como garantía de seguridad.</p>
+                <p class="prioridad">Prioridad: Debe tener</p>
+              </div>
+            </details>
+          </div>
+
+          <!-- Grupo 3 -->
+          <div class="panel panel-3">
+            <h3 class="panel-titulo">Gestión de información del club y de la comunidad</h3>
+            <details class="requisito">
+              <summary><span class="codigo">RF11</span> Publicar rutas oficiales</summary>
+              <div class="requisito-cuerpo">
+                <p>La aplicación web deberá permitir que el administrador del club publique una ruta oficial de Loja con su trazado y horario recomendado.</p>
+                <p class="criterio"><strong>Criterio de comprobación:</strong> una ruta validada y publicada por el administrador aparece identificada como oficial en el catálogo público.</p>
+                <p class="prioridad">Prioridad: Debe tener</p>
+              </div>
+            </details>
+            <details class="requisito">
+              <summary><span class="codigo">RF12</span> Registrar espacios del club</summary>
+              <div class="requisito-cuerpo">
+                <p>La aplicación web deberá permitir que el administrador del club registre un espacio recomendado para correr con su ubicación y horario sugerido.</p>
+                <p class="criterio"><strong>Criterio de comprobación:</strong> tras guardar datos válidos, el espacio aparece en la consulta pública con el horario correspondiente.</p>
+                <p class="prioridad">Prioridad: Debe tener</p>
+              </div>
+            </details>
+            <details class="requisito">
+              <summary><span class="codigo">RF13</span> Registrar incidentes</summary>
+              <div class="requisito-cuerpo">
+                <p>El sistema deberá guardar como pendiente de revisión un reporte de incidente que envíe un corredor autenticado.</p>
+                <p class="criterio"><strong>Criterio de comprobación:</strong> un reporte con tipo, ubicación y fecha queda registrado como pendiente y no se publica inmediatamente.</p>
+                <p class="prioridad">Prioridad: Debe tener</p>
+              </div>
+            </details>
+            <details class="requisito">
+              <summary><span class="codigo">RF14</span> Moderar reportes</summary>
+              <div class="requisito-cuerpo">
+                <p>La aplicación web deberá permitir que el administrador del club resuelva la revisión de un reporte mediante su aprobación o rechazo.</p>
+                <p class="criterio"><strong>Criterio de comprobación:</strong> un reporte aprobado aparece en el mapa; uno rechazado no aparece y conserva el motivo de la decisión.</p>
+                <p class="prioridad">Prioridad: Debe tener</p>
+              </div>
+            </details>
+            <details class="requisito">
+              <summary><span class="codigo">RF15</span> Retirar reportes vencidos</summary>
+              <div class="requisito-cuerpo">
+                <p>El sistema deberá retirar de la información vigente los reportes de incidentes al cumplirse 30 días desde su creación.</p>
+                <p class="criterio"><strong>Criterio de comprobación:</strong> un reporte que supera el plazo deja de mostrarse como vigente y no influye en el índice actualizado.</p>
+                <p class="prioridad">Prioridad: Debe tener</p>
+              </div>
+            </details>
+            <details class="requisito">
+              <summary><span class="codigo">RF16</span> Registrar zonas de riesgo</summary>
+              <div class="requisito-cuerpo">
+                <p>La aplicación web deberá permitir que el administrador del club registre una zona de riesgo en Loja con su ubicación y fuente de información.</p>
+                <p class="criterio"><strong>Criterio de comprobación:</strong> la zona queda vinculada a la fuente registrada y se utiliza como dato de entrada para el índice cuando está vigente.</p>
+                <p class="prioridad">Prioridad: Debe tener</p>
+              </div>
+            </details>
+            <details class="requisito">
+              <summary><span class="codigo">RF17</span> Publicar publicidad</summary>
+              <div class="requisito-cuerpo">
+                <p>La aplicación web deberá permitir que el administrador del club publique un banner de un patrocinador con fechas de vigencia.</p>
+                <p class="criterio"><strong>Criterio de comprobación:</strong> el banner se muestra identificado como «Publicidad» solo durante su vigencia y nunca en la pantalla de grabación.</p>
+                <p class="prioridad">Prioridad: Debe tener</p>
+              </div>
+            </details>
+          </div>
+
+          <!-- Grupo 4 -->
+          <div class="panel panel-4">
+            <h3 class="panel-titulo">Entrenamientos y seguridad del corredor</h3>
+            <details class="requisito">
+              <summary><span class="codigo">RF18</span> Grabar entrenamientos</summary>
+              <div class="requisito-cuerpo">
+                <p>La aplicación Android deberá registrar el recorrido del corredor mediante GPS mientras un entrenamiento esté activo.</p>
+                <p class="criterio"><strong>Criterio de comprobación:</strong> una prueba en Android registra puntos del recorrido y permite calcular distancia, tiempo y ritmo.</p>
+                <p class="prioridad">Prioridad: Debe tener</p>
+              </div>
+            </details>
+            <details class="requisito">
+              <summary><span class="codigo">RF19</span> Consultar entrenamientos</summary>
+              <div class="requisito-cuerpo">
+                <p>El sistema deberá mostrar al corredor autenticado el historial de entrenamientos que haya guardado.</p>
+                <p class="criterio"><strong>Criterio de comprobación:</strong> el corredor puede abrir un entrenamiento propio y consultar su fecha, distancia, duración y recorrido; no ve registros ajenos.</p>
+                <p class="prioridad">Prioridad: Debe tener</p>
+              </div>
+            </details>
+            <details class="requisito">
+              <summary><span class="codigo">RF20</span> Registrar contactos de confianza</summary>
+              <div class="requisito-cuerpo">
+                <p>El sistema deberá permitir que el corredor registre contactos de confianza para recibir avisos relacionados con su recorrido.</p>
+                <p class="criterio"><strong>Criterio de comprobación:</strong> se pueden guardar hasta cinco contactos por corredor y no se acepta un sexto contacto.</p>
+                <p class="prioridad">Prioridad: Debe tener</p>
+              </div>
+            </details>
+            <details class="requisito">
+              <summary><span class="codigo">RF21</span> Compartir ubicación en vivo</summary>
+              <div class="requisito-cuerpo">
+                <p>La aplicación Android deberá generar un enlace temporal para que un contacto autorizado consulte la última ubicación recibida durante un entrenamiento.</p>
+                <p class="criterio"><strong>Criterio de comprobación:</strong> un contacto abre el enlace sin instalar la aplicación; el acceso deja de estar disponible al terminar el entrenamiento o al cumplirse cuatro horas.</p>
+                <p class="prioridad">Prioridad: Debe tener</p>
+              </div>
+            </details>
+            <details class="requisito">
+              <summary><span class="codigo">RF22</span> Enviar alerta SOS</summary>
+              <div class="requisito-cuerpo">
+                <p>La aplicación Android deberá enviar por correo una alerta SOS con la última ubicación disponible a los contactos de confianza cuando el corredor confirme su activación.</p>
+                <p class="criterio"><strong>Criterio de comprobación:</strong> tras mantener presionado SOS tres segundos, se ofrece una cancelación de cinco segundos; si no se cancela y hay conexión, se realiza el envío y se informa su resultado.</p>
+                <p class="prioridad">Prioridad: Debe tener</p>
+              </div>
+            </details>
+            <details class="requisito">
+              <summary><span class="codigo">RF23</span> Iniciar llamada de emergencia</summary>
+              <div class="requisito-cuerpo">
+                <p>La aplicación Android deberá ofrecer desde la pantalla de SOS una opción para abrir el marcador telefónico con el número 911.</p>
+                <p class="criterio"><strong>Criterio de comprobación:</strong> al tocar «Llamar al 911» se abre el marcador del teléfono; no se afirma que exista conexión automática con ECU 911.</p>
+                <p class="prioridad">Prioridad: Debe tener</p>
+              </div>
+            </details>
+          </div>
+
+          <!-- Grupo 5 -->
+          <div class="panel panel-5">
+            <h3 class="panel-titulo">Requisitos no funcionales</h3>
+            <p class="panel-nota">Establecen condiciones medibles sobre seguridad, privacidad, accesibilidad, rendimiento, compatibilidad, disponibilidad y fiabilidad. No son nuevas funciones de usuario.</p>
+            <details class="requisito requisito-rnf">
+              <summary><span class="codigo">RNF01</span> Seguridad de contraseñas</summary>
+              <div class="requisito-cuerpo">
+                <p>El sistema deberá almacenar las contraseñas con una función de hash adaptativa y una sal única por cuenta.</p>
+                <p class="criterio"><strong>Criterio de comprobación:</strong> una inspección de la base de datos confirma que no hay contraseñas en texto plano.</p>
+              </div>
+            </details>
+            <details class="requisito requisito-rnf">
+              <summary><span class="codigo">RNF02</span> Comunicaciones seguras</summary>
+              <div class="requisito-cuerpo">
+                <p>El sistema deberá proteger las comunicaciones entre la web, la aplicación Android y el servidor mediante TLS 1.2 o superior.</p>
+                <p class="criterio"><strong>Criterio de comprobación:</strong> las conexiones HTTP se redirigen a HTTPS y la negociación TLS no acepta versiones inferiores a 1.2.</p>
+              </div>
+            </details>
+            <details class="requisito requisito-rnf">
+              <summary><span class="codigo">RNF03</span> Control de acceso</summary>
+              <div class="requisito-cuerpo">
+                <p>El servidor deberá rechazar las operaciones de los usuarios cuyo rol no tenga autorización para realizarlas.</p>
+                <p class="criterio"><strong>Criterio de comprobación:</strong> las pruebas de acceso con roles no autorizados reciben una respuesta de denegación.</p>
+              </div>
+            </details>
+            <details class="requisito requisito-rnf">
+              <summary><span class="codigo">RNF04</span> Privacidad de la ubicación</summary>
+              <div class="requisito-cuerpo">
+                <p>El sistema deberá mantener privados por defecto los recorridos y la ubicación del corredor fuera de los enlaces temporales autorizados.</p>
+                <p class="criterio"><strong>Criterio de comprobación:</strong> un usuario diferente no puede consultar ubicaciones ni entrenamientos sin autorización vigente.</p>
+              </div>
+            </details>
+            <details class="requisito requisito-rnf">
+              <summary><span class="codigo">RNF05</span> Facilidad de aprendizaje</summary>
+              <div class="requisito-cuerpo">
+                <p>La aplicación web deberá permitir que un corredor que inicia sesión por primera vez planifique una ruta en tres minutos o menos sin ayuda.</p>
+                <p class="criterio"><strong>Criterio de comprobación:</strong> en una prueba con usuarios nuevos, los participantes completan la tarea sin asistencia dentro de tres minutos.</p>
+              </div>
+            </details>
+            <details class="requisito requisito-rnf">
+              <summary><span class="codigo">RNF06</span> Accesibilidad web</summary>
+              <div class="requisito-cuerpo">
+                <p>La aplicación web deberá cumplir las pautas WCAG 2.1 de nivel AA en las pantallas incluidas en el prototipo.</p>
+                <p class="criterio"><strong>Criterio de comprobación:</strong> la revisión de accesibilidad y las pruebas de teclado no detectan incumplimientos del nivel AA en las pantallas evaluadas.</p>
+              </div>
+            </details>
+            <details class="requisito requisito-rnf">
+              <summary><span class="codigo">RNF07</span> Rendimiento de las rutas</summary>
+              <div class="requisito-cuerpo">
+                <p>El servidor deberá responder las consultas de recomendación y cálculo de rutas en cinco segundos o menos para al menos el 95 % de las solicitudes con 50 usuarios concurrentes.</p>
+                <p class="criterio"><strong>Criterio de comprobación:</strong> una prueba de carga documenta por separado el tiempo de respuesta de ambas operaciones.</p>
+              </div>
+            </details>
+            <details class="requisito requisito-rnf">
+              <summary><span class="codigo">RNF08</span> Compatibilidad web</summary>
+              <div class="requisito-cuerpo">
+                <p>La aplicación web deberá funcionar en las dos últimas versiones de Chrome, Firefox, Edge y Safari, en anchos de pantalla de 360 a 1920 píxeles.</p>
+                <p class="criterio"><strong>Criterio de comprobación:</strong> se ejecuta la misma prueba de navegación y planificación en los navegadores y tamaños indicados.</p>
+              </div>
+            </details>
+            <details class="requisito requisito-rnf">
+              <summary><span class="codigo">RNF09</span> Compatibilidad Android</summary>
+              <div class="requisito-cuerpo">
+                <p>La aplicación móvil deberá poder instalarse y ejecutarse en dispositivos con Android 10 o superior.</p>
+                <p class="criterio"><strong>Criterio de comprobación:</strong> se instala el APK y se comprueba el inicio y la grabación en un dispositivo Android compatible.</p>
+              </div>
+            </details>
+            <details class="requisito requisito-rnf">
+              <summary><span class="codigo">RNF10</span> Disponibilidad del prototipo</summary>
+              <div class="requisito-cuerpo">
+                <p>La aplicación web y su API deberán mantenerse accesibles al menos el 95 % del tiempo durante la prueba piloto, excluyendo mantenimientos comunicados con al menos 24 horas de anticipación.</p>
+                <p class="criterio"><strong>Criterio de comprobación:</strong> un registro de disponibilidad del período piloto permite calcular el porcentaje de tiempo accesible.</p>
+              </div>
+            </details>
+            <details class="requisito requisito-rnf">
+              <summary><span class="codigo">RNF11</span> Conservación del recorrido</summary>
+              <div class="requisito-cuerpo">
+                <p>La aplicación Android deberá conservar localmente los puntos GPS ya capturados cuando se interrumpa la conexión a internet.</p>
+                <p class="criterio"><strong>Criterio de comprobación:</strong> se registra un entrenamiento sin red, se restablece la conexión y se comprueba que los puntos guardados sigan disponibles.</p>
+              </div>
+            </details>
+            <details class="requisito requisito-rnf">
+              <summary><span class="codigo">RNF12</span> Advertencia del índice</summary>
+              <div class="requisito-cuerpo">
+                <p>El sistema deberá identificar siempre el índice de seguridad como referencial y señalar cuando un tramo no tenga información suficiente para evaluarlo.</p>
+                <p class="criterio"><strong>Criterio de comprobación:</strong> ninguna consulta muestra una garantía de seguridad y un tramo sin datos presenta una advertencia visible.</p>
+              </div>
+            </details>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 04 TECNOLOGÍAS ================= -->
+    <section class="seccion seccion-tono" id="tecnologias" aria-labelledby="titulo-tecnologias">
+      <div class="contenedor">
+        <p class="etiqueta"><span class="numero">04</span> Tecnologías del proyecto</p>
+        <h2 id="titulo-tecnologias">Tecnologías de RUNCTY</h2>
+        <p class="intro">Las tecnologías se eligieron a partir del Acta de Constitución, el Documento de Visión y el documento de requisitos. Todo el proyecto se desarrolla en <strong>TypeScript</strong>, para que los tres integrantes trabajen con un solo lenguaje en la web, el móvil y el servidor.</p>
+
+        <figure class="figura">
+          <img src="imagenes/arquitectura-runcty.png" alt="Arquitectura de RUNCTY: la app Android y la aplicación web se comunican por HTTPS y JSON con el servidor API REST en NestJS; el servidor usa SQL parametrizado con la base de datos PostgreSQL, PostGIS y pgRouting, y envía alertas por correo y WhatsApp; los mapas vienen de OpenFreeMap y OpenStreetMap." width="1920" height="1080" loading="lazy">
+          <figcaption>Figura 1. Arquitectura propuesta de RUNCTY.</figcaption>
+        </figure>
+
+        <h3 class="subtitulo">Tecnologías por capa</h3>
+        <div class="rejilla rejilla-tec">
+          <article class="tec">
+            <p class="tec-capa">Lenguaje</p>
+            <h4>TypeScript</h4>
+            <p>Un solo lenguaje en la aplicación web, la app móvil y el servidor. Tipado estático que reduce errores y facilita la trazabilidad con los requisitos.</p>
+          </article>
+          <article class="tec">
+            <p class="tec-capa">Aplicación web</p>
+            <h4>React con Expo para web</h4>
+            <p>Panel del club, página pública de rutas y espacios, planificador y administración. Genera HTML en el navegador y se diseña responsive (360 a 1920 px).</p>
+          </article>
+          <article class="tec">
+            <p class="tec-capa">Estilos</p>
+            <h4>Tailwind CSS (NativeWind)</h4>
+            <p>Diseño responsive y consistente entre la web y el celular.</p>
+          </article>
+          <article class="tec">
+            <p class="tec-capa">App móvil</p>
+            <h4>React Native con Expo (APK)</h4>
+            <p>Grabación con GPS en segundo plano y con la pantalla bloqueada (expo-location). Guarda los puntos en el celular si se pierde la conexión (expo-sqlite).</p>
+          </article>
+          <article class="tec">
+            <p class="tec-capa">Mapas</p>
+            <h4>MapLibre, OpenFreeMap y OpenStreetMap</h4>
+            <p>Mapa interactivo de Loja con datos abiertos y gratuitos, sin claves de pago.</p>
+          </article>
+          <article class="tec">
+            <p class="tec-capa">Servidor</p>
+            <h4>Node.js con NestJS</h4>
+            <p>API REST en módulos, con controladores, servicios y validación de datos. Documentación automática con Swagger (OpenAPI).</p>
+          </article>
+          <article class="tec">
+            <p class="tec-capa">Base de datos</p>
+            <h4>PostgreSQL, PostGIS y pgRouting</h4>
+            <p>PostGIS guarda rutas, tramos, reportes y zonas como datos geográficos. pgRouting calcula la ruta segura entre dos puntos combinando distancia y riesgo.</p>
+          </article>
+          <article class="tec">
+            <p class="tec-capa">Acceso a datos</p>
+            <h4>Prisma (ORM)</h4>
+            <p>Modelos y migraciones de la base de datos. Las consultas de pgRouting se hacen con SQL parametrizado.</p>
+          </article>
+          <article class="tec">
+            <p class="tec-capa">Notificaciones</p>
+            <h4>Correo y enlaces de WhatsApp</h4>
+            <p>Verificación de cuentas, alertas SOS y avisos a los contactos de confianza, sin SMS pagados.</p>
+          </article>
+        </div>
+
+        <h3 class="subtitulo">Cómo cubre los contenidos de Ingeniería Web</h3>
+        <div class="tabla-envoltura">
+          <table class="tabla">
+            <caption class="solo-lector">Contenidos de Ingeniería Web y cómo se cumplen en RUNCTY</caption>
+            <thead>
+              <tr>
+                <th scope="col">Contenido</th>
+                <th scope="col">Cómo se cumple en RUNCTY</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">HTML semántico y accesibilidad</th>
+                <td>Interfaz que cumple las pautas WCAG 2.1 nivel AA: etiquetas y roles accesibles, navegación con teclado, contraste suficiente y texto ampliable.</td>
+              </tr>
+              <tr>
+                <th scope="row">CSS y diseño responsive</th>
+                <td>Tailwind CSS, con pantallas que se adaptan de 360 a 1920 px de ancho.</td>
+              </tr>
+              <tr>
+                <th scope="row">Framework</th>
+                <td>React (con Expo para web) en el cliente y NestJS en el servidor.</td>
+              </tr>
+              <tr>
+                <th scope="row">Patrón MVC</th>
+                <td>En el servidor, los modelos (Prisma) representan los datos, los controladores reciben las peticiones HTTP y los servicios aplican las reglas de negocio. La vista es la aplicación web.</td>
+              </tr>
+              <tr>
+                <th scope="row">CRUD</th>
+                <td>Usuarios, ciudades, rutas, espacios recomendados, reportes, zonas de riesgo, patrocinadores, banners y contactos de confianza.</td>
+              </tr>
+              <tr>
+                <th scope="row">API REST y consumo de API</th>
+                <td>Servidor con recursos REST en formato JSON, documentado con Swagger. La aplicación web y la app móvil consumen la misma API.</td>
+              </tr>
+              <tr>
+                <th scope="row">Persistencia</th>
+                <td>PostgreSQL con datos geográficos (PostGIS).</td>
+              </tr>
+              <tr>
+                <th scope="row">Despliegue</th>
+                <td>Aplicación web y servidor publicados con una URL pública y base de datos en la nube.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="rejilla rejilla-2 rejilla-arriba">
+          <div class="bloque">
+            <h3>Seguridad</h3>
+            <ul class="lista-check">
+              <li>Contraseñas guardadas con hash adaptativo (argon2), nunca en texto plano.</li>
+              <li>Sesiones con tokens que expiran y protección de cada ruta de la API según el rol.</li>
+              <li>Bloqueo del inicio de sesión tras 5 intentos fallidos y límite de peticiones por usuario.</li>
+              <li>Validación de todos los datos y consultas parametrizadas contra la inyección SQL.</li>
+              <li>Comunicación cifrada con HTTPS, cabeceras de seguridad (Helmet) y CORS configurado.</li>
+              <li>Claves de los servicios solo en variables de entorno, nunca dentro del código.</li>
+              <li>La ubicación de un corredor nunca es visible para otros sin su permiso (Ley Orgánica de Protección de Datos Personales).</li>
+            </ul>
+          </div>
+          <div class="bloque">
+            <h3>Infraestructura y costo</h3>
+            <p class="bloque-nota">Sin costo de infraestructura para el club durante el ciclo.</p>
+            <div class="tabla-envoltura">
+              <table class="tabla tabla-compacta">
+                <caption class="solo-lector">Servicios de infraestructura y su costo</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Componente</th>
+                    <th scope="col">Servicio</th>
+                    <th scope="col">Costo</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><th scope="row">Aplicación web</th><td>Vercel</td><td>Plan gratuito</td></tr>
+                  <tr><th scope="row">Servidor API</th><td>Render</td><td>Plan gratuito</td></tr>
+                  <tr><th scope="row">Base de datos</th><td>Supabase (PostgreSQL con PostGIS y pgRouting)</td><td>Plan gratuito</td></tr>
+                  <tr><th scope="row">Mapas</th><td>OpenFreeMap y OpenStreetMap</td><td>Gratuito</td></tr>
+                  <tr><th scope="row">App Android</th><td>Archivo APK instalable (sin tienda)</td><td>Gratuito</td></tr>
+                  <tr><th scope="row">Código y revisión</th><td>GitHub (repositorio privado, rama principal protegida)</td><td>Gratuito con GitHub Student Developer Pack</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="subtitulo">Herramientas de trabajo</h3>
+        <ul class="herramientas">
+          <li><strong>Control de versiones</strong> Git y GitHub, una rama por tarea y Pull Request con revisión</li>
+          <li><strong>Diseño de interfaces</strong> Figma (prototipo navegable antes de programar)</li>
+          <li><strong>Diagramas UML</strong> draw.io</li>
+          <li><strong>Pruebas</strong> Jest y Supertest, axe o Lighthouse, OWASP ZAP y k6</li>
+          <li><strong>Editor</strong> Visual Studio Code</li>
+        </ul>
+
+        <aside class="consulta" aria-labelledby="titulo-consulta">
+          <h3 id="titulo-consulta">Consulta para la ingeniera</h3>
+          <p>Para la aplicación web proponemos <strong>Expo para web</strong>, que genera la página en HTML a partir del mismo código React de la app móvil. Así el equipo aprende una sola tecnología y comparte pantallas como el inicio de sesión, el mapa y el catálogo de rutas.</p>
+          <p>Si usted prefiere que la aplicación web se construya por separado con <strong>React puro</strong> (por ejemplo, con Vite), también podemos hacerlo, manteniendo el mismo servidor y la misma base de datos.</p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ================= 05 DISEÑO (FIGMA) ================= -->
+    <section class="seccion" id="diseno" aria-labelledby="titulo-diseno">
+      <div class="contenedor">
+        <div class="figma">
+          <div class="figma-texto">
+            <p class="etiqueta etiqueta-clara"><span class="numero">05</span> Propuesta de diseño</p>
+            <h2 id="titulo-diseno">Prototipo RUNCTY web y móvil en Figma</h2>
+            <p>La propuesta de diseño del equipo está en Figma: un prototipo navegable de la aplicación web y de la app móvil, hecho antes de programar.</p>
+            <a class="boton boton-figma" href="https://www.figma.com/make/gIfoqALJYSt6hu2ZyHCxu8/Prototipo-RUNCTY-Web-y-M%C3%B3vil?t=76EYvWF3TbzVXDP3-1" target="_blank" rel="noopener noreferrer">Abrir la propuesta en Figma</a>
+            <p class="figma-nota">Se abre en una pestaña nueva.</p>
+          </div>
+          <ul class="figma-lista">
+            <li><strong>Archivo</strong> Prototipo RUNCTY Web y Móvil</li>
+            <li><strong>Plataformas</strong> Aplicación web y app móvil Android</li>
+            <li><strong>Herramienta</strong> Figma, prototipo navegable</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= PIE DE PÁGINA ================= -->
+  <footer class="pie">
+    <div class="contenedor pie-rejilla">
+      <div>
+        <p class="pie-titulo">Diseño y desarrollo de la página</p>
+        <p>Marcelo Pico Benitez</p>
+      </div>
+      <div>
+        <p class="pie-titulo">Información del proyecto RUNCTY</p>
+        <p>Joel Domínguez Ochoa, Marcelo Pico Benitez y Lennin Salinas Quinche</p>
+      </div>
+      <div>
+        <p class="pie-titulo">Ingeniería Web</p>
+        <p>Ing. Diana Torres Guarnizo · Computación · UTPL · 2026</p>
+      </div>
+    </div>
+    <div class="contenedor pie-final">
+      <p>Hecha con HTML5 y CSS3.</p>
+      <a href="#inicio">Volver arriba</a>
+    </div>
+  </footer>
+</body>
+</html>
